@@ -4,13 +4,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{Your tile here}</title>
+    <title>PC Power Consumption Calculator</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
     <div class="container">
+        <div class="mainBox">
+            <h1>PC Power Consumption Calculator</h1>
+            <form id="powerConsumptionForm">
+                <div class="inputItems">
+                    <label for="Appliance">Name of Appliance</label>
+                    <input type="text" placeholder="Example: Personal Computer" required>
+                    <label for="Number of Appliance">Quantity</label>
+                    <input type="number" placeholder="1 or 2" required>
+                </div>
+                <div class="inputItems">
+                    <label for="Power Consumption">Power Consumption (in Watts)</label>
+                    <input type="number" placeholder="150 or 200" required>
+                </div>
+                <div class="inputItems">
+                    <label for="Time">Time (in hours)</label>
+                    <input type="number" placeholder="10 or 15" required>
+                </div>
+                <div class="inputItems">
+                    <label for="Energy">Energy Consumptions in Units</label>
+                    <span id="energyOutput"></span>
+                    <span id="unitsConsumed"></span>
+                </div>
+                <button type="submit">Calculate</button>
+            </form>
+        </div>
     </div>
 
     <script src="js/script.js"></script>

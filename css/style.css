@@ -15,3 +15,69 @@
     align-items: center;
     justify-content: center;
 }
+
+.mainBox {
+    padding: 20px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.623);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+}
+
+.mainBox h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.mainBox form label {
+    display: block;
+    margin-bottom: 5px;
+    color: #444;
+}
+
+.mainBox .inputItems {
+    margin-bottom: 15px;
+}
+
+.mainBox input[type="text"],
+.mainBox input[type="number"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #333;
+    transition: border-color 0.3s ease-in-out;
+}
+
+.mainBox input[type="text"]::placeholder,
+.mainBox input[type="number"]::placeholder {
+    color: #999;
+}
+
+.mainBox input[type="text"]:focus,
+.mainBox input[type="number"]:focus {
+    outline: none;
+    border-color: #6c63ff;
+}
+
+.mainBox #energyOutput {
+    font-weight: bold;
+    color: #6c63ff;
+}
+
+button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #45a049;
+}

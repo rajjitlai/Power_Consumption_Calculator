@@ -17,3 +17,11 @@ function calculateEnergy(event) {
 }
 
 document.getElementById('powerConsumptionForm').addEventListener('submit', calculateEnergy);
+
+function resetForm() {
+    document.getElementById('powerConsumptionForm').reset();
+}
+
+function printDetails() {
+    window.print();
+}

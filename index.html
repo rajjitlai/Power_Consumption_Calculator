@@ -1,48 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PC Power Consumption Calculator</title>
+    <meta name="description" content="Calculate the power consumption and energy costs of your appliances with this modern, responsive Power Consumption Calculator.">
+    <title>Power Consumption Calculator</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
-
-    <div class="container">
-        <div class="mainBox">
-            <h1>PC Power Consumption Calculator</h1>
-            <form id="powerConsumptionForm">
-                <div class="inputItems">
-                    <label for="Appliance">Name of Appliance</label>
-                    <input type="text" placeholder="Example: Personal Computer" required>
-                    <label for="Number of Appliance">Quantity</label>
-                    <input type="number" placeholder="1 or 2" required>
-                </div>
-                <div class="inputItems">
-                    <label for="Power Consumption">Power Consumption (in Watts)</label>
-                    <input type="number" placeholder="150 or 200" required>
-                </div>
-                <div class="inputItems">
-                    <label for="Time">Time (in hours)</label>
-                    <input type="number" placeholder="10 or 15" required>
-                </div>
-                <div class="inputItems">
-                    <label for="Energy">Energy Consumptions in Units</label>
-                    <span id="energyOutput"></span>
-                    <span id="unitsConsumed"></span>
-                </div>
-                <div class="buttons">
-                    <button type="submit">Calculate</button>
-                    <button type="button" onclick="resetForm()">Reset</button>
-                    <button type="button" onclick="printDetails()">Print</button>
-                </div>
-            </form>
-        </div>
+    <div class="background-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
     </div>
+    
+    <main class="container">
+        <div class="layout-wrapper">
+            <!-- Left Side: Information -->
+            <section class="info-side no-print">
+                <header class="info-header">
+                    <h1>Power Consumption <br><span>Calculator</span></h1>
+                    <p class="subtitle">Estimate your energy usage and costs with precision.</p>
+                </header>
+
+                <div class="info-stack">
+                    <div class="info-card">
+                        <h4><i class="icon">⚡</i> Power (Watts)</h4>
+                        <p>Check the physical label or sticker on the back/bottom of your appliance. Look for "W" or "Watts". For PCs, you can use software like HWMonitor or check your PSU's rating.</p>
+                    </div>
+                    <div class="info-card">
+                        <h4><i class="icon">💰</i> Cost per Unit</h4>
+                        <p>Look at your last electricity bill. It usually lists the rate per "kWh" (Kilowatt-hour). Common rates vary by region (e.g., $0.12 - $0.30).</p>
+                    </div>
+                    <div class="info-card">
+                        <h4><i class="icon">🕒</i> Usage Time</h4>
+                        <p>Be realistic about active usage. A PC might be "on" for 10 hours but only consuming peak power during gaming or heavy rendering.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Right Side: Calculator -->
+            <div class="glass-card">
+                <form id="powerForm" class="calculator-form">
+                    <div class="form-group">
+                        <label for="applianceName">Appliance Name</label>
+                        <input type="text" id="applianceName" placeholder="e.g., Gaming PC, Air Conditioner" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="quantity">Quantity</label>
+                            <input type="number" id="quantity" min="1" value="1" placeholder="1" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="powerWatts">Power (Watts)</label>
+                            <input type="number" id="powerWatts" min="0" step="any" placeholder="e.g., 500" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="hoursPerDay">Hours Used per Day</label>
+                            <input type="number" id="hoursPerDay" min="0" max="24" step="any" placeholder="e.g., 8" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="daysPerMonth">Days Used per Month</label>
+                            <input type="number" id="daysPerMonth" min="0" max="31" step="1" value="30" placeholder="30" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="costPerUnit">Cost per Unit (kWh) in Currency (₹/$/etc.)</label>
+                        <input type="number" id="costPerUnit" min="0" step="any" placeholder="e.g., 10 or 0.15">
+                    </div>
+
+                    <div class="action-buttons no-print">
+                        <button type="submit" class="btn btn-primary">Calculate</button>
+                        <button type="button" class="btn btn-secondary" onclick="resetForm()">Reset</button>
+                        <button type="button" class="btn btn-outline" onclick="window.print()">Print Report</button>
+                    </div>
+                    </form>
+
+                    <div id="results" class="results-container hidden">
+                    <h2>Calculation Results</h2>
+                    <div class="result-grid">
+                        <div class="result-item">
+                            <span class="result-label">Daily Energy:</span>
+                            <span class="result-value" id="dailyEnergy">0.00 kWh</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">Monthly Energy:</span>
+                            <span class="result-value" id="monthlyEnergy">0.00 kWh</span>
+                        </div>
+                        <div class="result-item cost-result">
+                            <span class="result-label">Est. Monthly Cost:</span>
+                            <div class="cost-values">
+                                <span class="result-value highlight" id="monthlyCostInr">₹0.00</span>
+                                <span class="result-value highlight" id="monthlyCostUsd">$0.00</span>
+                            </div>
+                        </div>
+                    </div>                    <div class="print-footer only-print">
+                        <p>Generated by Power Consumption Calculator</p>
+                        <p id="printDate"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
 
     <script src="js/script.js"></script>
 </body>
-
 </html>
